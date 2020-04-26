@@ -1,0 +1,128 @@
+---
+title: "**Summer 2020 Student Information**"
+output: 
+  html_document:
+   toc: true
+   toc_float: true
+   theme: "spacelab"
+---
+
+```{r setup, include=FALSE}
+library(rio)
+library(here)
+library(tidyverse)
+library(knitr)
+library(kableExtra)
+library(ggrepel)
+library(colorblindr)
+library(gt)
+theme_set(theme_minimal())
+opts_chunk$set(echo = FALSE,
+               fig.width = 8,
+               fig.height = 8)
+```
+
+```{r load-data, fig.width = 10, fig.height = 10, echo = FALSE, include=FALSE}
+summer <- import(here("data", "summer_student_data.sav"),
+               setclass = "tbl_df") %>% 
+  characterize() %>% 
+  janitor::clean_names() 
+
+head(summer)
+
+AAC <- summer %>% 
+  filter(q3 == "AAC")
+
+head(AAC)
+
+SCHAGE <- summer %>% 
+  filter(q3 == "School Age")
+
+head(SCHAGE)
+
+FC_YCC <- summer %>% 
+  filter(q3 == "Fluency/YCC")
+head(FC_YCC)
+
+BrICC <- summer %>% 
+  filter(q3 == "BrICC")
+head(BrICC)
+
+CAALMS <- summer %>% 
+  filter(q3 == "CAALMS")
+head(CAALMS)
+```
+
+## **AAC**
+```{r AAC table,include=TRUE}
+AAC_table <- AAC %>% 
+  select(student_name, q1, q2)
+
+knitr::kable(AAC_table, align = "lcc",
+      caption = "AAC Students Summer 2020",
+      col.names = c("Student",
+                    "Where do you plan to reside during the summer 2020 term?",
+                    "If you plan to reside in Eugene, would you be interested in participating in on-campus clinical activities if the university permits it?")) %>% 
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"))
+
+```
+
+
+## **School Age**
+```{r school age table,include=TRUE}
+school_table <- SCHAGE %>% 
+  select(student_name, q1, q2)
+
+knitr::kable(school_table, align = "lcc",
+      caption = "School Age Students Summer 2020",
+      col.names = c("Student",
+                    "Where do you plan to reside during the summer 2020 term?",
+                    "If you plan to reside in Eugene, would you be interested in participating in on-campus clinical activities if the university permits it?")) %>% 
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"))
+
+```
+
+
+## **FC/YCC**
+```{r fc_ycc table,include=TRUE}
+fc_ycc_table <- FC_YCC %>% 
+  select(student_name, q1, q2)
+
+knitr::kable(fc_ycc_table, align = "lcc",
+      caption = "Fluency/YCC Students Summer 2020",
+      col.names = c("Student",
+                    "Where do you plan to reside during the summer 2020 term?",
+                    "If you plan to reside in Eugene, would you be interested in participating in on-campus clinical activities if the university permits it?")) %>% 
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"))
+
+```
+
+
+## **BrICC**
+```{r bricc table,include=TRUE}
+bricc_table <- BrICC %>% 
+  select(student_name, q1, q2)
+
+knitr::kable(bricc_table, align = "lcc",
+      caption = "BrICC Students Summer 2020",
+      col.names = c("Student",
+                    "Where do you plan to reside during the summer 2020 term?",
+                    "If you plan to reside in Eugene, would you be interested in participating in on-campus clinical activities if the university permits it?")) %>% 
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"))
+
+```
+
+
+## **CAALMS**
+```{r caalms table,include=TRUE}
+caalms_table <- CAALMS %>% 
+  select(student_name, q1, q2)
+
+knitr::kable(caalms_table, align = "lcc",
+      caption = "CAALMS Students Summer 2020",
+      col.names = c("Student",
+                    "Where do you plan to reside during the summer 2020 term?",
+                    "If you plan to reside in Eugene, would you be interested in participating in on-campus clinical activities if the university permits it?")) %>% 
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"))
+
+```
